@@ -1,4 +1,5 @@
 import java.util.List;
+import java.util.Objects;
 
 public class Repost implements IPost {
     private final User author;
@@ -40,5 +41,35 @@ public class Repost implements IPost {
 
     public Post getOriginalPost() {
         return originalPost;
+    }
+
+    @Override
+    public String toString() {
+        return "Repost{" +
+                "author=" + author +
+                ", likes=" + likes +
+                ", hashtags=" + hashtags +
+                ", content='" + content + '\'' +
+                ", postedAt=" + postedAt +
+                ", originalPost=" + originalPost +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Repost repost = (Repost) o;
+        return likes == repost.likes
+                && postedAt == repost.postedAt
+                && Objects.equals(author, repost.author)
+                && Objects.equals(hashtags, repost.hashtags)
+                && Objects.equals(content, repost.content)
+                && Objects.equals(originalPost, repost.originalPost);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(author, likes, hashtags, content, postedAt, originalPost);
     }
 }
