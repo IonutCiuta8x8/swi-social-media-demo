@@ -10,12 +10,14 @@ class TimelineService {
         for (IPost iPost : timeline.getPosts()) {
             if (iPost instanceof Post) {
                 Post post = (Post) iPost;
-                postService.displayPost(post);
+                String postView = postService.getPostView(post);
+                System.out.println(postView);
             }
 
             if (iPost instanceof Repost) {
                 Repost repost = (Repost) iPost;
-                postService.displayRepost(repost);
+                String repostView = postService.getRepostView(repost);
+                System.out.println(repostView);
             }
         }
     }
