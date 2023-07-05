@@ -1,3 +1,5 @@
+import java.util.Objects;
+
 class User {
     private final String displayName;
     private final String username;
@@ -25,5 +27,31 @@ class User {
 
     public AccountType getAccountType() {
         return accountType;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "displayName='" + displayName + '\'' +
+                ", username='" + username + '\'' +
+                ", followerCount=" + followerCount +
+                ", accountType=" + accountType +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return followerCount == user.followerCount
+                && Objects.equals(displayName, user.displayName)
+                && Objects.equals(username, user.username)
+                && accountType == user.accountType;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(displayName, username, followerCount, accountType);
     }
 }
