@@ -7,7 +7,7 @@ public class SocialMediaPlatform {
 
         Timeline timeline = timelineService.getTimelineViaApiCall(user);
 
-        System.out.println(timeline);
+        timelineService.displayTimeline(timeline);
     }
 }
 
