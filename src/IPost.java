@@ -1,13 +1,13 @@
 import java.util.List;
 
 public interface IPost {
-    User getAuthor();
+    User author();
 
-    String getContent();
+    String content();
 
-    List<String> getHashtags();
+    List<String> hashtags();
 
-    int getLikes();
+    int likes();
 
-    long getPostedAt();
+    long postedAt();
 }
