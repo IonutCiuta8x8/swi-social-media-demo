@@ -6,7 +6,7 @@ public class PostService {
     private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy hh:mm")
             .withZone(ZoneId.systemDefault());
 
-    public void displayPost(Post post) {
+    public String getPostView(Post post) {
         var template = """
                 @%s posted:
                 | 📱 %s
@@ -14,17 +14,15 @@ public class PostService {
                 | ---
                 """;
 
-        var out = template.formatted(
+        return template.formatted(
                 post.author().username(),
                 getContentWithHashTags(post),
                 post.likes(),
                 getPostDate(post)
         );
-
-        System.out.println(out);
     }
 
-    public void displayRepost(Repost repost) {
+    public String getRepostView(Repost repost) {
         var template = """
                 @%s reposted:
                 | 📱%s
@@ -34,7 +32,7 @@ public class PostService {
                 | ---
                 """;
 
-        var out = template.formatted(
+        return template.formatted(
                 repost.author().username(),
                 getContentWithHashTags(repost),
                 repost.originalPost().author().username(),
@@ -42,8 +40,6 @@ public class PostService {
                 repost.likes(),
                 getPostDate(repost)
         );
-
-        System.out.println(out);
     }
 
     private String getContentWithHashTags(IPost post) {
