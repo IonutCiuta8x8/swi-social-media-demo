@@ -1,13 +1,13 @@
 import java.util.List;
 
 class Timeline {
-    private final List<Post> posts;
+    private final List<IPost> posts;
 
-    public Timeline(List<Post> posts) {
+    public Timeline(List<IPost> posts) {
         this.posts = posts;
     }
 
-    public List<Post> getPosts() {
+    public List<IPost> getPosts() {
         return posts;
     }
 }
