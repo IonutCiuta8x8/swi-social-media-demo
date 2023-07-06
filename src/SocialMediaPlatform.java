@@ -21,6 +21,8 @@ public class SocialMediaPlatform {
         } else {
             System.out.println(elonUsername + " did not post yet.");
         }
+
+        System.out.println(metricsService.getAllHashtags(timeline));
     }
 }
 
