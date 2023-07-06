@@ -8,7 +8,7 @@ public class PostService {
 
     public String getPostView(Post post) {
         var template = """
-                @%s posted:
+                @%s%s posted:
                 | 📱 %s
                 | ❤️ %d, ⏰ %s
                 | ---
@@ -16,6 +16,7 @@ public class PostService {
 
         return template.formatted(
                 post.author().username(),
+                getAccountTypeBadge(post),
                 getContentWithHashTags(post),
                 post.likes(),
                 getPostDate(post)
@@ -24,9 +25,9 @@ public class PostService {
 
     public String getRepostView(Repost repost) {
         var template = """
-                @%s reposted:
+                @%s%s reposted:
                 | 📱%s
-                | | 🗣️ @%s: %s
+                | | 🗣️ @%s%s: %s
                 | | ---
                 | ❤️ %d, ⏰ %s
                 | ---
@@ -34,12 +35,22 @@ public class PostService {
 
         return template.formatted(
                 repost.author().username(),
+                getAccountTypeBadge(repost),
                 getContentWithHashTags(repost),
                 repost.originalPost().author().username(),
+                getAccountTypeBadge(repost.originalPost()),
                 getContentWithHashTags(repost.originalPost()),
                 repost.likes(),
                 getPostDate(repost)
         );
+    }
+
+    private String getAccountTypeBadge(IPost post) {
+        return switch (post.author().accountType()) {
+            case PREMIUM -> "✅";
+            case POWER_USER -> "✳️";
+            case REGULAR -> "";
+        };
     }
 
     private String getContentWithHashTags(IPost post) {
