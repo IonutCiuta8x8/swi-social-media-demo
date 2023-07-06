@@ -67,4 +67,10 @@ public class PostService {
     private String getPostDate(IPost post) {
         return formatter.format(Instant.ofEpochSecond(post.postedAt()));
     }
+
+    public String getPostView(IPost input) {
+        if (input instanceof Post post) return getPostView(post);
+        else if (input instanceof Repost repost) getRepostView(repost);
+        return "[invalid post]";
+    }
 }
