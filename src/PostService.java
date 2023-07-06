@@ -9,7 +9,7 @@ public class PostService {
 
     public String getPostView(Post post) {
         String template =
-                "@%s posted:\n" +
+                "@%s%s posted:\n" +
                 "| 📱 %s\n" +
                 "| ❤️ %d, ⏰ %s\n" +
                 "| ---\n";
@@ -17,6 +17,7 @@ public class PostService {
         return String.format(
                 template,
                 post.getAuthor().getUsername(),
+                getAccountTypeBadge(post),
                 getContentWithHashTags(post),
                 post.getLikes(),
                 getPostDate(post)
@@ -25,21 +26,43 @@ public class PostService {
 
     public String getRepostView(Repost repost) {
         String template =
-                "@%s reposted:\n" +
+                "@%s%s reposted:\n" +
                 "| 📱%s\n" +
-                "| | 🗣️ @%s: %s\n" +
+                "| | 🗣️ @%s%s: %s\n" +
                 "| | ---\n" +
                 "| ❤️ %d, ⏰ %s\n" +
                 "| ---\n";
 
         return template.formatted(
                 repost.getAuthor().getUsername(),
+                getAccountTypeBadge(repost),
                 getContentWithHashTags(repost),
                 repost.getOriginalPost().getAuthor().getUsername(),
+                getAccountTypeBadge(repost.getOriginalPost()),
                 getContentWithHashTags(repost.getOriginalPost()),
                 repost.getLikes(),
                 getPostDate(repost)
         );
+    }
+
+    private String getAccountTypeBadge(IPost post) {
+        AccountType type = post.getAuthor().getAccountType();
+        String badge;
+
+        switch (type) {
+            case PREMIUM:
+                badge = "✅";
+                break;
+            case POWER_USER:
+                badge = "✳️";
+                break;
+            case REGULAR:
+            default:
+                badge = "";
+                break;
+        }
+
+        return badge;
     }
 
     private String getContentWithHashTags(IPost post) {
