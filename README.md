@@ -19,6 +19,9 @@ Solution on branch: **java2023-part1**
 **Task 1:**
 How many likes does the most popular post on the timeline have?
 
+**Task 1.5:**
+Find the latest post for a user or else print "<user> did not post recently".
+
 **Task 2:**
 Let's display only posts without hashtags.
 

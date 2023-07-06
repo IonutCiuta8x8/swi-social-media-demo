@@ -10,9 +10,9 @@ public class PostService {
     public String getPostView(Post post) {
         String template =
                 "@%s%s posted:\n" +
-                "| 📱 %s\n" +
-                "| ❤️ %d, ⏰ %s\n" +
-                "| ---\n";
+                        "| 📱 %s\n" +
+                        "| ❤️ %d, ⏰ %s\n" +
+                        "| ---\n";
 
         return String.format(
                 template,
@@ -27,11 +27,11 @@ public class PostService {
     public String getRepostView(Repost repost) {
         String template =
                 "@%s%s reposted:\n" +
-                "| 📱%s\n" +
-                "| | 🗣️ @%s%s: %s\n" +
-                "| | ---\n" +
-                "| ❤️ %d, ⏰ %s\n" +
-                "| ---\n";
+                        "| 📱%s\n" +
+                        "| | 🗣️ @%s%s: %s\n" +
+                        "| | ---\n" +
+                        "| ❤️ %d, ⏰ %s\n" +
+                        "| ---\n";
 
         return template.formatted(
                 repost.getAuthor().getUsername(),
@@ -78,6 +78,12 @@ public class PostService {
 
     private String getPostDate(IPost post) {
         return formatter.format(Instant.ofEpochSecond(post.getPostedAt()));
+    }
+
+    public String getPostView(IPost input) {
+        if (input instanceof Post post) return getPostView(post);
+        else if (input instanceof Repost repost) getRepostView(repost);
+        return "[invalid post]";
     }
 }
 
