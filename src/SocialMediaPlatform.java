@@ -7,7 +7,11 @@ public class SocialMediaPlatform {
 
         Timeline timeline = timelineService.getTimelineViaApiCall(user);
 
-        timelineService.displayTimeline(timeline);
+        // timelineService.displayTimeline(timeline);
+
+        MetricsService metricsService = new MetricsService();
+
+        System.out.println("Most likes: " + metricsService.getMostLikes(timeline));
     }
 }
 

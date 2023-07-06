@@ -15,22 +15,23 @@ Group by author the post count [ var ]
 Solution on branch: **java2023-part1**
 
 ### Part 2
-**Task1**:
-Let's display posts properly [ refactor Part1.Task2 with streams ]
 
-**Task2**:
-Let's find the latest post for a specific user and print a default message if none found [ Optional ]
+**Task 1:**
+How many likes does the most popular post on the timeline have?
 
-**Task3**:
-Let's return a set of all hashtags
+**Task 2:**
+Let's display only posts without hashtags.
 
-**Task4**:
-Let's sort the posts by most liked
+**Task 3:**
+Now, let's generate a set of all the hashtags?
 
-**Task5**:
-Let's redo Part1.Task3 and make it prettier
+**Task 4:**
+How many total likes does each user have?
 
-**Task6**:
-What if getting the timeline takes some time and we don't want to block?
+**Task 5:**
+Print the number of posts a specific user in the last hour, else print "<user> did not post".
+
+**Task 6:**
+The future is now - but is it?
 
 Solution on branch: **java2023-part2**
