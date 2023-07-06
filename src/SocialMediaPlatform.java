@@ -25,6 +25,8 @@ public class SocialMediaPlatform {
                 .map(postService::getPostView)
                 .orElse(otherUser + " did not post recently 💔");
         System.out.println(otherMsg);
+
+        System.out.println(metricsService.getAllHashtags(timeline));
     }
 }
 
