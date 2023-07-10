@@ -4,9 +4,16 @@ import post.IPost;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
-public class PrioritizedTimelineFactory {
+public class PrioritizedTimelineFactory implements ITimelineFactory {
+    @Override
+    public Timeline getTimeline(List<IPost> posts, Order order) {
+        Objects.requireNonNull(order.getPriority());
+        return getPrioritizedTimeline(posts, order.getPriority());
+    }
+
     public Timeline getPrioritizedTimeline(List<IPost> posts, Priority order) {
         return switch (order) {
             case MOST_FOLLOWERS -> new PrioritizedTimeline(

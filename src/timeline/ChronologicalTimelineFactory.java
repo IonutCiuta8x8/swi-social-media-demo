@@ -5,8 +5,15 @@ import post.IPost;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Objects;
 
-public class ChronologicalTimelineFactory {
+public class ChronologicalTimelineFactory implements ITimelineFactory {
+    @Override
+    public Timeline getTimeline(List<IPost> posts, Order order) {
+        Objects.requireNonNull(order.getChronoOrder());
+        return getChronologicalTimeline(posts, order.getChronoOrder());
+    }
+
     public Timeline getChronologicalTimeline(List<IPost> posts, ChronologicalOrder order) {
         var copyOfPosts = new ArrayList<>(posts);
         switch (order) {
