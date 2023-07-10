@@ -20,7 +20,7 @@ public class TesterForFactoryPattern {
         );
 
         // For display reasons
-        TimelineService service = new TimelineService();
+        TimelineService service = TimelineService.getInstance();
 
         // Factories
         ChronologicalTimelineFactory chronoFactory = new ChronologicalTimelineFactory();

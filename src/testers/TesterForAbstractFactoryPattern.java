@@ -20,7 +20,7 @@ public class TesterForAbstractFactoryPattern {
         );
 
         // For display reasons
-        TimelineService service = new TimelineService();
+        TimelineService service = TimelineService.getInstance();
 
         // Factories
         var timelineFactory = new TimelineFactory();

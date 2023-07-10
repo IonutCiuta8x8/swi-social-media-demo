@@ -1,16 +1,24 @@
 package post;
 
-import post.IPost;
-import post.Post;
-import post.Repost;
-
 import java.time.Instant;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 
-public class PostService {
+public final class PostService {
     private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy hh:mm")
             .withZone(ZoneId.systemDefault());
+
+    private static PostService instance;
+
+    private PostService() {
+    }
+
+    public static synchronized PostService getInstance() {
+        if (instance == null) {
+            instance = new PostService();
+        }
+        return instance;
+    }
 
     public String getPostView(Post post) {
         var template = """
