@@ -8,5 +8,7 @@ public record Post(User author,
                    String content,
                    List<String> hashtags,
                    int likes,
-                   long postedAt) implements IPost {
+                   long postedAt,
+                   boolean isAdd,
+                   boolean isMisinformation) implements IPost {
 }

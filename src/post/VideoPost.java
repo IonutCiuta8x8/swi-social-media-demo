@@ -14,7 +14,9 @@ public record VideoPost(User author,
                         int height,
                         int width,
                         int likes,
-                        long postedAt) implements IPost {
+                        long postedAt,
+                        boolean isAdd,
+                        boolean isMisinformation) implements IPost {
 
     public static class Builder {
         private User author;
@@ -99,7 +101,9 @@ public record VideoPost(User author,
                     this.height,
                     this.width,
                     this.likes,
-                    this.postedAt
+                    this.postedAt,
+                    false,
+                    false
             );
         }
     }

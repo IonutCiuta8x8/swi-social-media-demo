@@ -13,4 +13,8 @@ public interface IPost {
     int likes();
 
     long postedAt();
+
+    boolean isAdd();
+
+    boolean isMisinformation();
 }

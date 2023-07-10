@@ -3,6 +3,9 @@ package timeline;
 import post.Post;
 import post.PostService;
 import post.Repost;
+import postview.AdPostViewDecorator;
+import postview.IPostView;
+import postview.MisinformationPostViewDecorator;
 
 public final class TimelineService {
     private static TimelineService instance;
@@ -22,13 +25,15 @@ public final class TimelineService {
     public void displayTimeline(Timeline timeline) {
         timeline.posts().forEach(iPost -> {
             if (iPost instanceof Post post) {
-                var view = postService.getPostView(post);
-                System.out.println(view);
+                IPostView view = postService.getPostView(post);
+                IPostView decoratedView = new AdPostViewDecorator(new MisinformationPostViewDecorator(view));
+                System.out.println(decoratedView.getView());
+                return;
             }
 
             if (iPost instanceof Repost repost) {
-                var view = postService.getRepostView(repost);
-                System.out.println(view);
+                IPostView view = postService.getRepostView(repost);
+                System.out.println(view.getView());
             }
         });
     }

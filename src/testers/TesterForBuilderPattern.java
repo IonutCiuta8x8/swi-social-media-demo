@@ -17,7 +17,9 @@ public class TesterForBuilderPattern {
                 720,
                 256,
                 13,
-                Data.Posted.now.get()
+                Data.Posted.now.get(),
+                false,
+                false
         );
 
         var videoPostFromBuilder = new VideoPost.Builder()
