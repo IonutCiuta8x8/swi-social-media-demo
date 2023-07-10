@@ -1,3 +1,6 @@
+import post.IPost;
+import timeline.Timeline;
+
 import java.util.Optional;
 
 public class SearchService {

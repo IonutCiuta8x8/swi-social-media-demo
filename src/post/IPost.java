@@ -1,3 +1,6 @@
+package post;
+
+import user.User;
 import java.util.List;
 
 public interface IPost {

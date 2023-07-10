@@ -1,3 +1,7 @@
+package post;
+
+import user.User;
+
 import java.time.Instant;
 import java.util.List;
 import java.util.Objects;
@@ -12,7 +16,7 @@ public record VideoPost(User author,
                         int likes,
                         long postedAt) implements IPost {
 
-    static class Builder {
+    public static class Builder {
         private User author;
         private String content;
         private List<String> hashtags;

@@ -1,3 +1,8 @@
+package testers;
+
+import data.Data;
+import post.VideoPost;
+
 import java.util.List;
 
 public class TesterForBuilderPattern {

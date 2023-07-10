@@ -1,3 +1,6 @@
+import post.IPost;
+import timeline.Timeline;
+
 import java.util.Comparator;
 import java.util.List;
 import java.util.Set;

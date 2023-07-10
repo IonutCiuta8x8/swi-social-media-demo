@@ -1,3 +1,9 @@
+package post;
+
+import post.IPost;
+import post.Post;
+import post.Repost;
+
 import java.time.Instant;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;

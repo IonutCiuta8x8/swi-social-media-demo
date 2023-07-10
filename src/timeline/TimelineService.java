@@ -1,10 +1,12 @@
-class TimelineService {
-    private final PostService postService = new PostService();
+package timeline;
 
-    public Timeline getTimelineViaApiCall(String userId) {
-        System.out.println("Fetching timeline for user [" + userId + "]");
-        return TimelineGenerator.timeline;
-    }
+import post.Post;
+import post.PostService;
+import post.Repost;
+import timeline.Timeline;
+
+public class TimelineService {
+    private final PostService postService = new PostService();
 
     public void displayTimeline(Timeline timeline) {
         timeline.posts().forEach(iPost -> {
