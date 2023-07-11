@@ -19,3 +19,4 @@ public class PostDisplayStrategy implements DisplayStrategy<Post> {
         System.out.println(decoratedView.getView());
     }
 }
+

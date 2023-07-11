@@ -1,24 +1,25 @@
 package timeline;
 
+import display.DisplayStrategy;
 import display.PostDisplayStrategy;
 import display.RepostDisplayStrategy;
 import display.VideoPostDisplayStrategy;
-import post.Post;
-import post.PostService;
-import post.Repost;
-import post.VideoPost;
+import post.*;
 
+import java.util.Map;
+
+@SuppressWarnings("rawtypes,unchecked")
 public final class TimelineService {
     private static TimelineService instance;
 
-    private final PostDisplayStrategy postDisplayStrategy;
-    private final RepostDisplayStrategy repostDisplayStrategy;
-    private final VideoPostDisplayStrategy videoPostDisplayStrategy;
+    private final Map<Class<? extends IPost>, DisplayStrategy> strategies;
 
     private TimelineService(PostService postService) {
-        this.postDisplayStrategy = new PostDisplayStrategy(postService);
-        this.repostDisplayStrategy = new RepostDisplayStrategy(postService);
-        this.videoPostDisplayStrategy = new VideoPostDisplayStrategy(postService);
+        this.strategies = Map.of(
+                Post.class, new PostDisplayStrategy(postService),
+                Repost.class, new RepostDisplayStrategy(postService),
+                VideoPost.class, new VideoPostDisplayStrategy(postService)
+        );
     }
 
     public static synchronized TimelineService getInstance() {
@@ -29,20 +30,6 @@ public final class TimelineService {
     }
 
     public void displayTimeline(Timeline timeline) {
-        timeline.posts().forEach(iPost -> {
-            if (iPost instanceof Post post) {
-                postDisplayStrategy.display(post);
-                return;
-            }
-
-            if (iPost instanceof Repost repost) {
-                repostDisplayStrategy.display(repost);
-                return;
-            }
-
-            if (iPost instanceof VideoPost videoPost) {
-                videoPostDisplayStrategy.display(videoPost);
-            }
-        });
+        timeline.posts().forEach(iPost -> strategies.get(iPost.getClass()).display(iPost));
     }
 }
