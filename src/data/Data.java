@@ -49,6 +49,26 @@ public class Data {
         public static final Post zuckPostAboutSocialMedia = new Post(Users.zuck, "$1 is not broken. We at $2 work everyday to make it better.", List.of(Hashtags.socialMedia, Hashtags.meta), 247, Posted._15minAgo, false, false);
         public static final Post fanboyPostAboutApple = new Post(Users.appleFanboy, "$1 still makes the best products", List.of(Hashtags.apple), 11, Posted._5minAgo, false, false);
         public static final Post fanboyPostAboutIphone = new Post(Users.appleFanboy, "Can't wait to pay more money to buy the same $1 this year. $2", List.of(Hashtags.iphone, Hashtags.apple), 30, Posted._1hAgo, false, false);
+
+        public static final Post addPost = new Post(
+                new User("Apple", "apple", 233000, AccountType.PREMIUM),
+                "The new iPhone awaits you this autumn!",
+                List.of(),
+                1250,
+                Data.Posted._8hAgo,
+                true,
+                false
+        );
+
+        public static final Post falsePost = new Post(
+                new User("Larry", "truthseeker", 12, AccountType.POWER_USER),
+                "The Earth if flat $1",
+                List.of("#facts"),
+                1250,
+                Data.Posted._5minAgo,
+                false,
+                true
+        );
     }
 
     public static class Reposts {

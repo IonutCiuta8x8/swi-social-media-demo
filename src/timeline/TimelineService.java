@@ -1,18 +1,24 @@
 package timeline;
 
+import display.PostDisplayStrategy;
+import display.RepostDisplayStrategy;
+import display.VideoPostDisplayStrategy;
 import post.Post;
 import post.PostService;
 import post.Repost;
-import postview.AdPostViewDecorator;
-import postview.IPostView;
-import postview.MisinformationPostViewDecorator;
+import post.VideoPost;
 
 public final class TimelineService {
     private static TimelineService instance;
-    private final PostService postService;
+
+    private final PostDisplayStrategy postDisplayStrategy;
+    private final RepostDisplayStrategy repostDisplayStrategy;
+    private final VideoPostDisplayStrategy videoPostDisplayStrategy;
 
     private TimelineService(PostService postService) {
-        this.postService = postService;
+        this.postDisplayStrategy = new PostDisplayStrategy(postService);
+        this.repostDisplayStrategy = new RepostDisplayStrategy(postService);
+        this.videoPostDisplayStrategy = new VideoPostDisplayStrategy(postService);
     }
 
     public static synchronized TimelineService getInstance() {
@@ -25,15 +31,17 @@ public final class TimelineService {
     public void displayTimeline(Timeline timeline) {
         timeline.posts().forEach(iPost -> {
             if (iPost instanceof Post post) {
-                IPostView view = postService.getPostView(post);
-                IPostView decoratedView = new AdPostViewDecorator(new MisinformationPostViewDecorator(view));
-                System.out.println(decoratedView.getView());
+                postDisplayStrategy.display(post);
                 return;
             }
 
             if (iPost instanceof Repost repost) {
-                IPostView view = postService.getRepostView(repost);
-                System.out.println(view.getView());
+                repostDisplayStrategy.display(repost);
+                return;
+            }
+
+            if (iPost instanceof VideoPost videoPost) {
+                videoPostDisplayStrategy.display(videoPost);
             }
         });
     }
